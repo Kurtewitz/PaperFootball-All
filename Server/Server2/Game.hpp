@@ -26,7 +26,6 @@ public:
     ~Game();
     
     void startGame() throw();
-    int runGame() throw();
     bool broadcast(std::string mssg, std::shared_ptr<Connection> connection);
     bool addPlayer(Connection::ptr_Connection newPlayer);
     

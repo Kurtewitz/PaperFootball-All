@@ -9,7 +9,6 @@
 #include "Connection.hpp"
 #include "Connection_Manager.hpp"
 #include "Game.hpp"
-//#include "Connection_Manager.cpp"
 
 Connection::ptr_Connection Connection::create(boost::asio::io_service &io_service) {
     static int count;
@@ -60,41 +59,6 @@ void Connection::detachGame(){
 
 void Connection::do_read()
 {
-    /*socket_.async_receive(buffer_, [this, self](boost::system::error_code ec, std::size_t length){
-     if (!ec)
-     {
-     //            std::string msg = buffer_.data();
-     
-     boost::asio::streambuf::const_buffers_type bufs = buffer_.data();
-     std::string msg(boost::asio::buffers_begin(bufs),
-     boost::asio::buffers_begin(bufs) +
-     buffer_.size());
-     
-     buffer_.consume(buffer_.size());
-     
-     
-     std::cout << "Got Message from:_" << socket_.remote_endpoint().address().to_string() << ":" <<
-     socket_.remote_endpoint().port() <<" : " << msg << std::endl;
-     if(game_){
-     if (game_->getAmountPlayer() == MaxPlayer){
-     if(game_->broadcast(msg, self)){
-     std::cout << "Broadcasted Message: " << msg << std::endl;
-     }
-     }
-     else{
-     std::cout << "!game_AmountPlayer" << std::endl;
-     }
-     }
-     else if(connection_Manager_){
-     connection_Manager_->handle_Request(self, msg);
-     }
-     else{
-     std::cout << "!NO GAME OR CONNECTION_MANAGER" << std::endl;
-     }
-     do_read();
-     }
-     });
-     */
     boost::asio::async_read(socket_, buffer_, boost::asio::transfer_at_least(1), boost::bind(&Connection::handle_read, shared_from_this(), boost::asio::placeholders::error));
 }
 
@@ -159,5 +123,3 @@ bool Connection::connectToAccount(Account acc){
 Account Connection::getAccount() {
     return this->account;
 }
-
-

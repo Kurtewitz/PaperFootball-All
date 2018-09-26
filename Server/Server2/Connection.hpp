@@ -21,10 +21,6 @@
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread/thread.hpp>
 
-/*!
- * The tcp_connection class stores a socket
- */
-
 struct Account{
     std::string name;
     std::string password;
@@ -64,7 +60,6 @@ private:
     std::shared_ptr<Connection_Manager> connection_Manager_;
     Account account;
     boost::asio::ip::tcp::socket socket_;
-//    std::array<char, 123> buffer_;
     boost::asio::streambuf buffer_;
 };
 

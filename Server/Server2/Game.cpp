@@ -25,12 +25,6 @@ Game::ptr_Game Game::create() {
 }
 
 Game::~Game(){
-    if(player[0]!=nullptr){
-        // delete player[0];
-    }
-    if(player[1]!=nullptr){
-        // delete player[1];
-    }
 }
 
 void Game::startGame() throw(){
@@ -47,13 +41,6 @@ void Game::startGame() throw(){
     to2 << "]";
     this->player[0]->do_write(to1.str());
     this->player[1]->do_write(to2.str());
-}
-
-int Game::runGame() throw(){
-    while(gameRDY){
-        
-    }
-    return -1;
 }
 
 bool Game::broadcast(std::string mssg, std::shared_ptr<Connection> connection){

@@ -67,6 +67,7 @@ void Connection_Manager::handle_Request(Connection::ptr_Connection connection, s
         if(method == "")
             ss >> method;
         std::cout << "METHOD " << method << std::endl;
+        //Create new Account
         if(method == "LOGIN"){
             ss >> para3;
             if(para3 == "name"){
