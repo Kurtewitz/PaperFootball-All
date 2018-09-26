@@ -68,7 +68,7 @@ public class JoinGame extends VBox {
 		search.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				connect();
+				
 				connectionStatus.setText(_CONNECTING);
 			}
 		});
@@ -142,13 +142,7 @@ public class JoinGame extends VBox {
 		return inviteCode;
 	}
 	
-	/**
-	 * Connect to the game server with the given ip address
-	 * @param ip
-	 */
-	private void connect() {
-		main.connectToServer();
-	}
+	
 	
 	/**
 	 * Connection to the game server was successful. Update status text and enable the statr button.

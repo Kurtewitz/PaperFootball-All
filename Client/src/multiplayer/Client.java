@@ -56,7 +56,7 @@ public class Client {
 							else {
 								boolean check = true;
 								for(char c : s.toCharArray()) {
-									if(!Character.isDigit(c) && !Character.isLetter(c) && c != '>' && c != '[' && c != ']' && c != '.' && c != ' ') {
+									if(!Character.isDigit(c) && !Character.isLetter(c) && c != '>' && c != '[' && c != ']' && c != '.' && c != ' ' && c != ',') {
 										check = false;
 									}
 									System.out.print((int) c);
@@ -120,6 +120,11 @@ public class Client {
 		catch(Exception exception) { exception.printStackTrace(); }
 	}
 	
-	public void send(String msg) { if(open)out.println(msg); }
+	public void send(String msg) {
+		if(open) {
+			System.out.println("client sent message: " + msg);
+			out.println(msg);
+		}
+	}
 	public boolean isConnected() { return open; }
 }

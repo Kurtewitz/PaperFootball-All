@@ -32,7 +32,7 @@ public class ClientAdapter implements ClientListener {
 	@Override
 	public void receivedInput(String msg) {
 		// TODO Auto-generated method stub
-		System.out.println("Client received input " + msg);
+		System.out.println("Client received input: " + msg);
 		
 		if(main.player_turn() == 0) {
 			
@@ -44,7 +44,6 @@ public class ClientAdapter implements ClientListener {
 				System.out.println("Playing against " + msg.substring(msg.indexOf('[') + 1, msg.indexOf(']')));
 			}
 			else {
-				System.out.println("Ich bin Player nr " + msg);
 				
 				int playerNr = Integer.parseInt(msg);
 				main.setMyPlayerNr(playerNr);
@@ -53,7 +52,7 @@ public class ClientAdapter implements ClientListener {
 		
 		//since we are on the Client side, we know we joined an online game, but just to be sure...
 		
-		else if(!main.player(main.player_turn()).isLocal()) ((Network) main.player(main.player_turn()) ).messageReceived(msg);
+		else if(!main.player(main.player_turn()).isLocal() && msg.contains(">")) ((Network) main.player(main.player_turn()) ).messageReceived(msg);
 	}
 
 	@Override

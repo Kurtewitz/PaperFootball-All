@@ -56,10 +56,19 @@ public class Login extends VBox {
 		
 		loginbutton = new Button("Log in");
 		loginbutton.setOnAction(e -> {
-			String loginmsg = "LOGIN [" + usernamearea.getText() + ";" + passwordfield.getText() + "]";
+			String loginmsg = "LOGIN name " + usernamearea.getText() + " password " + passwordfield.getText();
 			
 
-//			main.client().send(loginmsg);
+			Thread t = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					main.client().send(loginmsg);
+					System.out.println("login msg sent");
+				}});
+			
+			t.run();
 			System.out.println(loginmsg);
 			this.main.changeToJoinGame();
 			this.setPlayerName(usernamearea.getText());
@@ -83,6 +92,7 @@ public class Login extends VBox {
 	public void setPlayerName(String playerName) {
 		main.setPlayerName(playerName);
 	}
+	
 	
 	
 	

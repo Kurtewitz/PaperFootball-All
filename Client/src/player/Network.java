@@ -83,25 +83,35 @@ public class Network extends Player {
 		
 		String[] directions = receivedMessage.split(">");
 		
-		int currentX = main.ball()[0];
-		int currentY = main.ball()[1];
-		
-		for(String direction : directions) {
+		if(directions[0] != receivedMessage) {
+
+			int currentX = main.ball()[0];
+			int currentY = main.ball()[1];
 			
-			if(direction.contains("W")) currentX--;
-			else if(direction.contains("E")) currentX++;
+			for(String direction : directions) {
+				
+				if(direction.contains("W")) currentX--;
+				else if(direction.contains("E")) currentX++;
+				
+				if(direction.contains("N")) currentY--;
+				else if(direction.contains("S")) currentY++;
+				
+				toClick.add(new int[] {currentX, currentY});
+				
+			}
 			
-			if(direction.contains("N")) currentY--;
-			else if(direction.contains("S")) currentY++;
+			receivedMessage = "";
+			newMessage = false;
 			
-			toClick.add(new int[] {currentX, currentY});
+			return toClick;
 			
 		}
+		else {
+			System.out.println("Unfug message");
+			return new ArrayList<int[]>();
+		}
 		
-		receivedMessage = "";
-		newMessage = false;
 		
-		return toClick;
 	}
 	
 	

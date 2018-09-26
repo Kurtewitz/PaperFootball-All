@@ -43,10 +43,19 @@ public class Menu extends HBox{
 		joinGame = new Button("Play online");
 		joinGame.setOnAction(e -> {
 			this.main.showLogin();
+			connect();
 		});
 		
 		
 		this.getChildren().addAll(playOffline, joinGame);
+	}
+	
+	/**
+	 * Connect to the game server with the given ip address
+	 * @param ip
+	 */
+	private void connect() {
+		main.connectToServer();
 	}
 	
 }

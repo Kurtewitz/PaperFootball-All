@@ -32,7 +32,7 @@ public class PaperFootball extends Application {
 	// public static final int _PORT = 3161;
 	public static final int _PORT = 8000;
 
-	public static final String _SERVER_IP = "192.168.2.104";
+	public static final String _SERVER_IP = "192.168.2.103";
 	// public static final String _SERVER_IP = "87.149.111.1";
 	// public static final String _SERVER_IP = "192.168.178.184";
 	// public static final String _SERVER_IP = "192.168.178.20";
@@ -430,15 +430,13 @@ public class PaperFootball extends Application {
 
 		client = new Client(_SERVER_IP, _PORT, new ClientAdapter(this));
 		
-		
-
 	}
 
 	/**
 	 * Our {@link Client} has successfully connected to a hosted game server.
 	 */
 	public void connectedToServer() {
-		joinGame.connectionSuccessful();
+//		joinGame.connectionSuccessful();
 	}
 
 	/**
