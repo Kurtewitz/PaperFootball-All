@@ -64,6 +64,9 @@ local.properties
 # Eclipse Core
 .project
 
+#xCode
+*.xcodeproj
+
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
