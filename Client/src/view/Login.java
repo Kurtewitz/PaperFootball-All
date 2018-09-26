@@ -56,7 +56,7 @@ public class Login extends VBox {
 		
 		loginbutton = new Button("Log in");
 		loginbutton.setOnAction(e -> {
-			String loginmsg = "LOGIN name " + usernamearea.getText() + " password " + passwordfield.getText();
+			String loginmsg = "LOGIN [ name " + usernamearea.getText() + " password " + passwordfield.getText() + " ]";
 			
 
 			Thread t = new Thread(new Runnable() {
