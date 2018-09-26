@@ -60,6 +60,7 @@ void Connection::detachGame(){
 void Connection::do_read()
 {
     boost::asio::async_read(socket_, buffer_, boost::asio::transfer_at_least(1), boost::bind(&Connection::handle_read, shared_from_this(), boost::asio::placeholders::error));
+    std::cout << "This: " << this->socket_.local_endpoint().port() << " reading" << std::endl;
 }
 
 void Connection::handle_read(const boost::system::error_code& error)
@@ -88,10 +89,9 @@ void Connection::handle_read(const boost::system::error_code& error)
         connection_Manager_->handle_Request(self, msg);
     }
     else{
-        std::cout << "!NO GAME OR CONNECTION_MANAGER" << std::endl;
+        std::cout << "Connection::hanle_read()::!NO MESSAGE HANDLING" << std::endl;
     }
     do_read();
-    
 }
 
 void Connection::do_write(std::string response)

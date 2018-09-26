@@ -59,29 +59,42 @@ void Connection_Manager::connectToGame(Connection::ptr_Connection connection) {
     }
 }
 
-void Connection_Manager::handle_Request(Connection::ptr_Connection connection, std::string request){
+void Connection_Manager::handle_Request(Connection::ptr_Connection connection, std::string request)
+{
     std::stringstream ss(request);
     std::string method, para1, para2, para3 = "";
+    std::string instr[20];
+    
     while(!ss.eof()){
-        
-        if(method == "")
-            ss >> method;
-        std::cout << "METHOD " << method << std::endl;
-        //Create new Account
-        if(method == "LOGIN"){
-            ss >> para3;
-            if(para3 == "name"){
-                ss >> para1;
-                ss >> para3;
-                if (para3 == "password"){
-                    ss >> para2;
-                    Account acc{para1, para2, true};
+        ss >> instr[0];
+        std::cout << "METHOD " << instr[0] << std::endl;
+        if(instr[0] == "LOGIN"){
+            //Create new Account
+            instr[1] = instr[0];
+            ss >> instr[0];
+            ss >> instr[0];
+            if(instr[0] == "name"){
+                std::cout << "name " << instr[0] << std::endl;
+                instr[2] = instr[0];
+                ss >> instr[0];
+                if (instr[0] == "password"){
+                    std::cout << "pw " << instr[0] << std::endl;
+                    instr[3] = instr[0];
+                    Account acc{instr[2], instr[3], true};
+                    std::cout << "LoggedIn: " << instr[2] << ", " << instr[3] << std::endl;
                     connection->connectToAccount(acc);
                 }
             }
-            else return;
+            this->connectToGame(connection);
+            return;
         }
-        this->connectToGame(connection);
+        else if (method == "TURN"){
+        }
+        else if (method == "GAMEDATA"){
+        }
+        else {
+            std::cout << "COULD NOT PARSE" << std::endl;
+            return;
+        }
     }
-    
 }
